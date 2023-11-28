@@ -5,6 +5,8 @@ import "core:mem"
 import "core:os"
 import "core:strings"
 
+import "dependencies:cli"
+
 GrepError :: union {
 	UnableToOpenFile,
 	UnableToReadFromFile,
@@ -26,7 +28,7 @@ main :: proc() {
 	fmt.printf("%v\n", arguments)
 
 	if len(arguments) != 2 {
-		fmt.printf("Usage: sgrep <patter> <file>\n")
+		fmt.printf("Usage: sgrep <pattern> <file>\n")
 		os.exit(1)
 	}
 	pattern := arguments[0]

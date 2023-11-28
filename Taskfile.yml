@@ -7,7 +7,7 @@ tasks:
 
   build:
     cmds:
-      - odin build sgrep -out=bin/sgrep
+      - odin build sgrep -collection:dependencies=dependencies -out=bin/sgrep
     aliases:
       - b
     silent: true
@@ -20,13 +20,13 @@ tasks:
     deps:
       - build
     cmds:
-      - bin/sgrep
+      - bin/sgrep {{.CLI_ARGS}}
     silent: true
     method: none
   
   run:
     cmds:
-      - odin run sgrep -out:bin/sgrep -o:speed
+      - odin run sgrep -collection:dependencies=dependencies -out:bin/sgrep -o:speed -- {{.CLI_ARGS}}
     aliases:
       - r
     method: none
