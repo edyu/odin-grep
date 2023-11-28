@@ -1,0 +1,37 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task: run
+
+  build:
+    cmds:
+      - odin build sgrep -out=bin/sgrep
+    aliases:
+      - b
+    silent: true
+    sources:
+      - './sgrep/**/*.odin'
+    generates:
+      - bin/sgrep
+
+  sgrep:
+    deps:
+      - build
+    cmds:
+      - bin/sgrep
+    silent: true
+    method: none
+  
+  run:
+    cmds:
+      - odin run sgrep -out:bin/sgrep -o:speed
+    aliases:
+      - r
+    method: none
+    silent: true
+    sources:
+      - '**/*.odin'
+
+interval: 250ms
